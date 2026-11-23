@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Designer Toolkit — Free Revision, Scope &amp; Quote Calculators</title>
+<meta name="description" content="Three free calculators for freelance designers: what unpaid revisions really cost, what scope creep did to your effective hourly rate, and a project quote builder that writes the quote for you. No sign-up. Everything runs in your browser.">
+<style>
+  :root{--ink:#1c2430;--muted:#5b6675;--line:#e3e7ec;--bg:#f7f8fa;--card:#ffffff;--accent:#0f766e;--accent-soft:#e6f4f2;--warn:#b45309;--warn-soft:#fef3c7;--bad:#b91c1c;--bad-soft:#fee2e2;--good:#15803d;--good-soft:#dcfce7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  header{background:#14202e;color:#fff;padding:56px 20px 48px;text-align:center}
+  header h1{margin:0 0 12px;font-size:clamp(28px,5vw,42px);line-height:1.2}
+  header p{margin:0 auto;max-width:640px;color:#c3ccd6;font-size:17px}
+  .pill{display:inline-block;background:#1f3a4d;color:#9fd8d2;border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:16px}
+  nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:10}
+  nav .wrap{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;padding:10px}
+  nav a{color:var(--accent);text-decoration:none;font-weight:600;font-size:14px;padding:6px 12px;border-radius:8px}
+  nav a:hover{background:var(--accent-soft)}
+  main{max-width:860px;margin:0 auto;padding:24px 20px 64px}
+  section.tool{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;margin:28px 0}
+  section.tool h2{margin:0 0 4px;font-size:23px}
+  section.tool .sub{color:var(--muted);margin:0 0 20px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}
+  label span{font-weight:400;color:var(--muted)}
+  input[type=number],input[type=text],select{width:100%;padding:10px 12px;border:1px solid #cbd2da;border-radius:8px;font-size:15px;font-family:inherit}
+  input:focus,select:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+  .check{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+  .check input{width:18px;height:18px;accent-color:var(--accent)}
+  .result{background:var(--accent-soft);border:1px solid #bfe3de;border-radius:12px;padding:20px;margin-top:20px}
+  .result h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.04em;color:var(--accent)}
+  .big{font-size:34px;font-weight:800;line-height:1.1}
+  .big small{font-size:15px;font-weight:600;color:var(--muted)}
+  .kv{display:grid;grid-template-columns:1fr auto;gap:6px 16px;margin-top:12px;font-size:15px}
+  .kv div:nth-child(even){font-weight:700;text-align:right}
+  .verdict{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:15px}
+  .verdict.good{background:var(--good-soft);color:var(--good)}
+  .verdict.warn{background:var(--warn-soft);color:var(--warn)}
+  .verdict.bad{background:var(--bad-soft);color:var(--bad)}
+  .copybox{margin-top:16px}
+  .copybox textarea{width:100%;min-height:120px;padding:12px;border:1px solid var(--line);border-radius:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.55;resize:vertical;background:#fbfcfd}
+  button{cursor:pointer;border:0;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:14px;padding:10px 18px}
+  button:hover{filter:brightness(1.08)}
+  button.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+  .hint{font-size:13px;color:var(--muted);margin-top:6px}
+  .faq h2,.guide h2{font-size:23px}
+  .faq h3{font-size:16px;margin:22px 0 4px}
+  .faq p,.guide p{margin:0 0 10px;color:#374151}
+  footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;color:var(--muted);font-size:13px}
+  .note{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;font-size:13.5px;color:#713f12;margin:28px 0}
+</style>
+</head>
+<body>
+<header>
+  <span class="pill">Free &middot; No sign-up &middot; Nothing leaves your browser</span>
+  <h1>Freelance Designer Toolkit</h1>
+  <p>Three calculators that answer the questions designers actually lose money on: what are unpaid revisions costing you, what did scope creep do to your rate, and what should this project cost?</p>
+</header>
+<nav><div class="wrap">
+  <a href="#revisions">Revision Cost</a>
+  <a href="#creep">Scope Creep</a>
+  <a href="#quote">Quote Builder</a>
+  <a href="#guide">How to use them</a>
+  <a href="#faq">FAQ</a>
+  <a href="articles/">Guides</a>
+</div></nav>
+<main>
+
+<!-- ============ TOOL 1: REVISION COST ============ -->
+<section class="tool" id="revisions">
+  <h2>1. Revision Cost Calculator</h2>
+  <p class="sub">Every revision round past the ones in your contract is billable time you are giving away. See what it is worth — and get a revision policy clause you can paste into your next contract.</p>
+  <div class="grid">
+    <div><label>Your hourly rate ($) <span>what you charge per hour</span></label>
+      <input type="number" id="r-rate" value="75" min="0" step="1"></div>
+    <div><label>Hours per revision round <span>incl. reading feedback &amp; rework</span></label>
+      <input type="number" id="r-hours" value="2" min="0" step="0.5"></div>
+    <div><label>Revision rounds included in the price</label>
+      <input type="number" id="r-included" value="2" min="0" step="1"></div>
+    <div><label>Total revision rounds the client asked for</label>
+      <input type="number" id="r-total" value="5" min="0" step="1"></div>
+    <div><label class="check"><input type="checkbox" id="r-rush"> Rush delivery on the extra rounds (+50%)</label></div>
+  </div>
+  <div class="result" id="r-result">
+    <h3>What the extra revisions cost</h3>
+    <div class="big" id="r-total-cost">$450 <small>for 3 extra rounds</small></div>
+    <div class="kv">
+      <div>Cost of one revision round</div><div id="r-per">$150</div>
+      <div>Rounds covered by your price</div><div id="r-free">2</div>
+      <div>Extra rounds you would bill</div><div id="r-extra">3</div>
+      <div>Cost of a 2-round project (for comparison)</div><div id="r-two">$300</div>
+    </div>
+    <div class="verdict warn" id="r-verdict"></div>
+  </div>
+  <div class="copybox">
+    <label>Revision policy clause — copy into your contract or quote</label>
+    <textarea id="r-clause" readonly></textarea>
+    <div style="margin-top:8px"><button onclick="copyText('r-clause')">Copy clause</button>
+    <span class="hint" id="r-copied"></span></div>
+  </div>
+</section>
+
+<!-- ============ TOOL 2: SCOPE CREEP ============ -->
+<section class="tool" id="creep">
+  <h2>2. Scope Creep Calculator</h2>
+  <p class="sub">You quoted a fixed fee. Find out what it actually paid per hour once the extra work is counted.</p>
+  <div class="grid">
+    <div><label>Quoted project fee ($)</label>
+      <input type="number" id="c-fee" value="2000" min="0" step="1"></div>
+    <div><label>Amount actually collected ($)</label>
+      <input type="number" id="c-collected" value="2000" min="0" step="1"></div>
+    <div><label>Hours you quoted for</label>
+      <input type="number" id="c-quoted-hours" value="25" min="0" step="0.5"></div>
+    <div><label>Total hours you actually worked</label>
+      <input type="number" id="c-actual-hours" value="33" min="0" step="0.5"></div>
+    <div><label>Direct project costs ($) <span>subcontractors, stock, fees</span></label>
+      <input type="number" id="c-costs" value="0" min="0" step="1"></div>
+  </div>
+  <div class="result" id="c-result">
+    <h3>What this project really earned</h3>
+    <div class="big" id="c-effective">$60.61 <small>effective $/hour</small></div>
+    <div class="kv">
+      <div>Rate the project was running at (quoted hours)</div><div id="c-quoted-rate">$80.00/hr</div>
+      <div>Unbilled extra hours</div><div id="c-extra-hours">8 hrs</div>
+      <div>Value of the time given away</div><div id="c-lost">$640</div>
+      <div>Scope creep</div><div id="c-creep">+32%</div>
+      <div>Gross profit (collected − costs)</div><div id="c-profit">$2,000</div>
+    </div>
+    <div class="verdict warn" id="c-verdict"></div>
+  </div>
+</section>
+
+<!-- ============ TOOL 3: QUOTE BUILDER ============ -->
+<section class="tool" id="quote">
+  <h2>3. Project Quote Builder</h2>
+  <p class="sub">Price a project by phase, add a buffer for the unknown, and get a quote you can paste into an email or proposal — with deposit and milestones worked out.</p>
+  <div class="grid">
+    <div><label>Your hourly rate ($)</label>
+      <input type="number" id="q-rate" value="75" min="0" step="1"></div>
+    <div><label>Buffer for scope risk (%) <span>20% is a common default</span></label>
+      <input type="number" id="q-buffer" value="20" min="0" max="100" step="1"></div>
+    <div><label>Discovery &amp; strategy (hours)</label>
+      <input type="number" id="q-discovery" value="4" min="0" step="0.5"></div>
+    <div><label>Design / production (hours)</label>
+      <input type="number" id="q-design" value="20" min="0" step="0.5"></div>
+    <div><label>Revisions — included rounds (hours)</label>
+      <input type="number" id="q-revisions" value="4" min="0" step="0.5"></div>
+    <div><label>Delivery &amp; handoff (hours)</label>
+      <input type="number" id="q-handoff" value="2" min="0" step="0.5"></div>
+    <div><label>Project expenses ($) <span>fonts, stock, subcontractors</span></label>
+      <input type="number" id="q-expenses" value="0" min="0" step="1"></div>
+    <div><label>Deposit before work starts (%)</label>
+      <input type="number" id="q-deposit" value="50" min="0" max="100" step="5"></div>
+  </div>
+  <div class="result" id="q-result">
+    <h3>Your project quote</h3>
+    <div class="big" id="q-total">$2,700 <small>fixed project price</small></div>
+    <div class="kv">
+      <div>Base labour (30 hrs × $75)</div><div id="q-labour">$2,250</div>
+      <div>Buffer (20%)</div><div id="q-buffer-amt">$450</div>
+      <div>Deposit to start (50%)</div><div id="q-deposit-amt">$1,350</div>
+      <div>Balance on delivery</div><div id="q-balance">$1,350</div>
+    </div>
+    <div class="verdict good" id="q-verdict"></div>
+  </div>
+  <div class="copybox">
+    <label>Quote text — copy into your email or proposal</label>
+    <textarea id="q-quote" readonly></textarea>
+    <div style="margin-top:8px"><button onclick="copyText('q-quote')">Copy quote</button>
+    <span class="hint" id="q-copied"></span></div>
+  </div>
+</section>
+
+<!-- ============ GUIDE + FAQ (SEO content) ============ -->
+<section class="guide" id="guide">
+  <h2>How to use these calculators</h2>
+  <p><strong>Start with the quote builder before you send a price.</strong> Break the job into phases and estimate the hours for each — discovery, design, revisions, handoff — then add a buffer of 20% for the things you cannot see yet. A buffer on the hours (or on the price) is what keeps a fixed-price project profitable when the brief turns out to be vaguer than it looked.</p>
+  <p><strong>Cap revisions in writing.</strong> Two revision rounds is the industry-standard allowance for most design work. Every round after that is extra work at your hourly rate — the revision calculator shows exactly what that is worth, and the clause it generates puts the rule in your contract so the conversation never gets awkward.</p>
+  <p><strong>After the project, run the scope creep calculator.</strong> Compare the hours you quoted with the hours you actually worked. If your effective hourly rate came out far below your nominal rate, the next quote needs a bigger buffer, a tighter scope, or a higher price. Most freelancers discover they are donating 20–30% of their time this way.</p>
+  <div class="note"><strong>Estimates, not advice.</strong> These tools do arithmetic on the numbers you enter. They are not accounting, tax, or legal advice, and they do not check a client or look anything up. For contracts and tax questions, talk to a qualified professional in your country.</div>
+</section>
+
+<section class="faq" id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>How many revision rounds should I include in a design project?</h3>
+  <p>Two rounds is the common standard for logo, brand, and web design work: one round for direction, one for refinement. Include the number in your contract, define what counts as a round (for example, one consolidated list of changes), and price further rounds at your hourly rate.</p>
+  <h3>How do I charge for extra revisions?</h3>
+  <p>Multiply the hours one round takes by your hourly rate, and state the per-round price in the contract before work starts. When the client asks for a round beyond the allowance, send a short change order with the price and get written approval before you do the work.</p>
+  <h3>What is a good buffer for a fixed-price freelance quote?</h3>
+  <p>20% is a reasonable default for work you have done before; use 30% or more for a new type of project, a vague brief, or a client you have not worked with. The buffer covers estimation error and small scope changes — it is not profit, and it should not be negotiated away.</p>
+  <h3>How much deposit should I ask for?</h3>
+  <p>50% before work starts is standard for projects under a few thousand dollars, with the balance on delivery or at agreed milestones. A deposit does two jobs: it confirms the client is serious, and it caps what you lose if the project stalls.</p>
+  <h3>Is my data saved or sent anywhere?</h3>
+  <p>No. Every calculation runs in your browser. Nothing you type is uploaded, stored, or shared. Close the tab and it is gone.</p>
+</section>
+
+<section class="guide" id="guides">
+  <h2>Guides for freelance designers</h2>
+  <p>Longer reads on the same problems these tools solve — revisions, scope creep, deposits, pricing, and contracts.</p>
+  <ul>
+    <li><a href="articles/01-how-many-revision-rounds.html">How Many Revision Rounds Should You Include?</a></li>
+    <li><a href="articles/02-how-to-charge-extra-revisions.html">How to Charge for Extra Revisions Without Losing the Client</a></li>
+    <li><a href="articles/03-scope-creep-what-it-really-costs.html">Scope Creep: How to Calculate What It Really Cost You</a></li>
+    <li><a href="articles/04-how-much-deposit-should-a-freelancer-ask-for.html">How Much Deposit Should a Freelancer Ask For?</a></li>
+    <li><a href="articles/05-fixed-price-vs-hourly.html">Fixed-Price vs Hourly: How to Quote a Design Project</a></li>
+    <li><a href="articles/06-freelance-designer-pricing-guide-2026.html">Freelance Designer Pricing Guide 2026: Rates by Experience</a></li>
+    <li><a href="articles/07-revision-clause-every-contract-needs.html">The Revision Clause Every Freelance Contract Needs</a></li>
+    <li><a href="articles/08-five-signs-client-trouble.html">5 Signs a Client Will Be Trouble (Before You Quote)</a></li>
+  </ul>
+</section>
+</main>
+<footer>
+  <p>Freelance Designer Toolkit — free tools for independent designers.<br>
+  Figures are estimates based on the numbers you enter. Not financial, tax, or legal advice.</p>
+</footer>
+<script>
+function $(id){return document.getElementById(id)}
+function num(id,def){var v=parseFloat($(id).value);return isNaN(v)||v<0?def:v}
+function money(n){return "$"+Math.round(n).toLocaleString("en-US")}
+function money2(n){return "$"+n.toFixed(2)}
+function copyText(id){
+  var el=$(id); el.select();
+  if(navigator.clipboard && navigator.clipboard.writeText){navigator.clipboard.writeText(el.value)}
+  else{document.execCommand("copy")}
+  var note=$(id==="r-clause"?"r-copied":"q-copied"); if(note){note.textContent="Copied."; setTimeout(function(){note.textContent=""},2000)}
+}
+
+/* ---- Tool 1: Revision cost ---- */
+function calcRevisions(){
+  var rate=num("r-rate",75), hrs=num("r-hours",2), inc=Math.round(num("r-included",2)),
+      total=Math.round(num("r-total",5)), rush=$("r-rush").checked;
+  var per=rate*hrs, extra=Math.max(0,total-inc), mult=rush?1.5:1,
+      cost=extra*per*mult, twoCost=Math.min(2,inc)*per;
+  $("r-total-cost").innerHTML=money(cost)+" <small>for "+extra+" extra round"+(extra===1?"":"s")+(rush&&extra>0?" (incl. 50% rush)":"")+"</small>";
+  $("r-per").textContent=money(per);
+  $("r-free").textContent=Math.min(total,inc);
+  $("r-extra").textContent=extra;
+  $("r-two").textContent=money(Math.min(2,total)*per);
+  var v=$("r-verdict");
+  if(extra===0){v.className="verdict good";v.textContent="Within your allowance — no extra rounds to bill on this project."}
+  else if(extra<=2){v.className="verdict warn";v.textContent="Manageable, but that is "+money(cost)+" of work your fixed price is absorbing. Bill it, or the next project absorbs it too."}
+  else{v.className="verdict bad";v.textContent="That is "+money(cost)+" of unpaid work — more than a full day at your rate. Put a revision cap in the contract before the next project."}
+  $("r-clause").value=
+    "REVISIONS\n"+
+    "The project price includes "+inc+" revision round"+(inc===1?"":"s")+". A revision round is one consolidated list of changes delivered at one time.\n"+
+    "Additional revision rounds are billed at "+money(per)+" per round"+(rush?" (rush delivery +50%)":"")+" and require written approval before work begins.\n"+
+    "Requests outside the agreed scope — new deliverables, new formats, or a change of direction — are quoted separately as a change order.";
+}
+
+/* ---- Tool 2: Scope creep ---- */
+function calcCreep(){
+  var fee=num("c-fee",2000), collected=num("c-collected",2000),
+      qh=num("c-quoted-hours",25), ah=num("c-actual-hours",33), costs=num("c-costs",0);
+  var quotedRate=qh>0?fee/qh:0, eff=ah>0?(collected-costs)/ah:0,
+      extraHrs=Math.max(0,ah-qh), lost=extraHrs*quotedRate,
+      creep=qh>0?((ah-qh)/qh*100):0, profit=collected-costs;
+  $("c-effective").innerHTML=money2(eff)+" <small>effective $/hour</small>";
+  $("c-quoted-rate").textContent=money2(quotedRate)+"/hr";
+  $("c-extra-hours").textContent=extraHrs.toFixed(1)+" hrs";
+  $("c-lost").textContent=money(lost);
+  $("c-creep").textContent=(creep>=0?"+":"")+creep.toFixed(0)+"%";
+  $("c-profit").textContent=money(profit);
+  var v=$("c-verdict");
+  if(ah<=qh){v.className="verdict good";v.textContent="On scope — you delivered within the hours you quoted. Your effective rate matches your quoted rate."}
+  else if(creep<=20){v.className="verdict warn";v.textContent="Mild creep: "+extraHrs.toFixed(1)+" extra hours cost you about "+money(lost)+". A 20% buffer on your next quote would have covered it."}
+  else{v.className="verdict bad";v.textContent="Heavy creep: the project ran "+creep.toFixed(0)+"% over the quoted hours, and your effective rate fell from "+money2(quotedRate)+" to "+money2(eff)+" an hour. Tighten the scope and raise the buffer next time."}
+}
+
+/* ---- Tool 3: Quote builder ---- */
+function calcQuote(){
+  var rate=num("q-rate",75), buffer=num("q-buffer",20),
+      d=num("q-discovery",4), de=num("q-design",20), rev=num("q-revisions",4), h=num("q-handoff",2),
+      exp=num("q-expenses",0), dep=num("q-deposit",50);
+  var hours=d+de+rev+h, labour=hours*rate, bufAmt=labour*buffer/100,
+      total=Math.ceil((labour+bufAmt+exp)/50)*50,
+      depAmt=total*dep/100, bal=total-depAmt;
+  $("q-total").innerHTML=money(total)+" <small>fixed project price</small>";
+  $("q-labour").textContent=money(labour)+" ("+hours+" hrs × "+money(rate)+")";
+  $("q-buffer-amt").textContent=money(bufAmt)+" ("+buffer+"%)";
+  $("q-deposit-amt").textContent=money(depAmt)+" ("+dep+"%)";
+  $("q-balance").textContent=money(bal);
+  var v=$("q-verdict");
+  v.className="verdict good";
+  v.textContent="Quote this as a fixed price. The buffer is already inside it — do not itemise it for the client, and do not let it be negotiated away.";
+  $("q-quote").value=
+    "PROJECT QUOTE\n"+
+    "Fixed project price: "+money(total)+"\n"+
+    "Includes: discovery & strategy ("+d+" hrs), design & production ("+de+" hrs), "+
+    "2 included revision rounds ("+rev+" hrs), delivery & handoff ("+h+" hrs).\n"+
+    "Payment: "+money(depAmt)+" ("+dep+"%) deposit before work starts, "+money(bal)+" on delivery.\n"+
+    "Revisions beyond the 2 included rounds, and any work outside the agreed scope, are quoted separately before the work is done.";
+}
+
+function calcAll(){calcRevisions();calcCreep();calcQuote()}
+document.querySelectorAll("input").forEach(function(el){el.addEventListener("input",calcAll);el.addEventListener("change",calcAll)});
+calcAll();
+</script>
+</body>
+</html>
